@@ -27,54 +27,40 @@
 
       if (isset($_SESSION['page']) && ($_SESSION['page'] == 0)) {
           $_SESSION['page'] = 1;
-          //if session fullName is not set
-          if (!isset($_SESSION['fullName'])) {
-              //load empty form
-              form_1("", "", "");
-          } else {
-              //load session variables to form
-              form_1($_SESSION['fullName'], $_SESSION['age'], $_SESSION['student']);
-          }
+          //load form 1
+          form_1();
       } else if (isset($_SESSION['page']) && ($_SESSION['page'] == 1)){
           //validation
           $error_msg = validate_form_1();
           if (count($error_msg) > 0){
               //display errors
               display_error($error_msg);
-              //pass post variables to form
-              form_1($_POST['fullName'], $_POST['age'], $_POST['student']);
+              //load form 1
+              form_1();
           } else {
               $_SESSION['page'] = 2;
-              if (!isset($_SESSION['howPurchased'])) {
-                  form_2("", "");
-              } else {
-                  form_2($_SESSION['howPurchased'], $_SESSION['purchases']);
-              }
+              //load form 2
+              form_2();
           }
       } else if (isset($_SESSION['page']) && ($_SESSION['page'] == 2)){
           $error_msg = validate_form_2();
           if (count($error_msg) > 0){
               //display errors
               display_error($error_msg);
-              //pass post variables to form
-              form_2($_POST['howPurchased'], $_POST['purchases']);
+              //load form 2
+              form_2();
           } else {
               $_SESSION['page'] = 3;
-              if (!isset($_SESSION['satisfaction' . $purchase])) {
-                  //load empty form
-                  form_3("", "");
-              } else {
-                  //load session variables to form
-                  form_3($_SESSION['satisfaction' . $purchase], $_SESSION['recommend' . $purchase]);
-              }
+              //load form 3
+              form_3();
           }
       } else if (isset($_SESSION['page']) && ($_SESSION['page'] == 3)){
           $error_msg = validate_form_3();
           if (count($error_msg) > 0){
               //display errors
               display_error($error_msg);
-              //pass post variables to form
-              form_3($_POST['satisfaction' . $purchase], $_POST['recommend' . $purchase]);
+              //load form 3
+              form_3();
           } else {
               thankyou();
           }

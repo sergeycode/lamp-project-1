@@ -12,7 +12,7 @@
                     <th>Which of the following did you purchase?</th>
                 </tr>
                 <tr>
-                    <!-- echo values of session variables to the table -->
+                    <!-- output values of session variables to the table -->
                     <td><?php echo $_SESSION['fullName'] ?></td>
                     <td><?php echo $_SESSION['age'] ?></td>
                     <td><?php echo $_SESSION['student'] ?></td>
@@ -28,14 +28,14 @@
                 </tr>
                 <?php
                 $purchases = str_replace(' ', '', $_SESSION['purchases']);
-                // echo values for each purchase
+                // output values for each purchase
                 foreach ($purchases as $purchase) {
-                    $satisfaction = 'satisfaction' . $purchase;
-                    $recommend = 'recommend' . $purchase;
+                    $satisfactionEach = 'satisfaction' . $purchase;
+                    $recommendEach = 'recommend' . $purchase;
                     echo '<tr>';
                     echo '<td>' . $purchase . '</td>';
-                    echo '<td>' . $_SESSION[$satisfaction] . '</td>';
-                    echo '<td>' . $_SESSION[$recommend] . '</td>';
+                    echo '<td>' . $_SESSION[$satisfactionEach] . '</td>';
+                    echo '<td>' . $_SESSION[$recommendEach] . '</td>';
                     echo '</tr>';
                 }
                 ?>

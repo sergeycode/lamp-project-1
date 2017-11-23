@@ -1,6 +1,28 @@
 <?php
-//pass variables as arguments to function for validation
-function form_1($fullName, $age, $student){ ?>
+    //form 1
+    function form_1(){
+        //assign variables with empty values
+        $fullName = "";
+        $age = "";
+        $student = "";
+        //if session (and post) variable is set than assign its value to variable which will be used
+        //to populate its value to the form
+        if (isset($_SESSION['fullName'])){
+            $fullName = $_SESSION['fullName'];
+        } else if (isset($_POST['fullName'])){
+            $fullName = $_POST['fullName'];
+        }
+        if (isset($_SESSION['age'])){
+            $age = $_SESSION['age'];
+        } else if (isset($_POST['age'])){
+            $age = $_POST['age'];
+        }
+        if (isset($_SESSION['student'])){
+            $student = $_SESSION['student'];
+        } else if (isset($_POST['student'])){
+            $student = $_POST['student'];
+        }
+    ?>
     <form class="form" method="POST">
         <h1 class="heading">Tell us about yourself</h1>
         <div class="block-center">

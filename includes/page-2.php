@@ -1,6 +1,22 @@
 <?php
-//pass variables as arguments to function for validation
-function form_2($howPurchased, $purchases){ ?>
+    //form 2
+    function form_2(){
+        //assign variables with empty values
+        $howPurchased = "";
+        $purchases = [];
+        //if session (and post) variable is set than assign its value to variable which will be used
+        //to echo 'checked' into the input of the form
+        if (isset($_SESSION['howPurchased'])){
+            $howPurchased = $_SESSION['howPurchased'];
+        } else if (isset($_POST['howPurchased'])){
+            $howPurchased = $_POST['howPurchased'];
+        }
+        if (isset($_SESSION['purchases'])){
+            $purchases = $_SESSION['purchases'];
+        } else if (isset($_POST['purchases'])){
+            $purchases = $_POST['purchases'];
+        }
+    ?>
     <form class="form" method="POST">
         <h3>How did you complete your purchase?</h3>
         <!-- echo 'checked' if meet condition -->
@@ -34,8 +50,6 @@ function validate_form_2(){
     }
     if (!isset($_POST['purchases'])){
         $error_msg[] = "At least one purchase option must be selected";
-        //add empty value
-        $_POST['purchases'] = [];
     } else if (isset($_POST['purchases'])) {
         $purchases = $_POST['purchases'];
     }
