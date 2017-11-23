@@ -5,7 +5,7 @@
         $fullName = "";
         $age = "";
         $student = "";
-        //if session (and post) variable is set than assign its value to variable which will be used
+        //if session (and post) variable is set - assign its value to variable which will be used
         //to populate its value to the form
         if (isset($_SESSION['fullName'])){
             $fullName = $_SESSION['fullName'];
