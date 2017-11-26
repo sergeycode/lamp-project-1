@@ -23,52 +23,81 @@
     <link rel="stylesheet" href="styles.css">
   </head>
   <body>
-  <?php if ($_SERVER['REQUEST_METHOD'] == 'POST'){
-
-      if (isset($_SESSION['page']) && ($_SESSION['page'] == 0)) {
+  <?php
+      //if session is not set to page
+      if (!isset($_SESSION['page'])) {
+          //set session to page 0
+          $_SESSION['page'] = 0;
+          //load into page
+          intro();
+      } else if (isset($_SESSION['page']) && ($_SESSION['page'] == 0)) {
+          //set session to page 1
           $_SESSION['page'] = 1;
           //load form 1
           form_1();
-      } else if (isset($_SESSION['page']) && ($_SESSION['page'] == 1)){
-          //validation
-          $error_msg = validate_form_1();
-          if (count($error_msg) > 0){
-              //display errors
-              display_error($error_msg);
-              //load form 1
+      } else if (isset($_SESSION['page']) && ($_SESSION['page'] == 1)) {
+          // if post request
+          if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+              //validate
+              $error_msg = validate_form_1();
+              if (count($error_msg) > 0){
+                  //display errors
+                  display_error($error_msg);
+                  //load form 1
+                  form_1();
+              } else {
+                  //set session to page 2
+                  $_SESSION['page'] = 2;
+                  //load form 2
+                  form_2();
+              }
+          } else {
               form_1();
+          }
+      } else if (isset($_SESSION['page']) && ($_SESSION['page'] == 2)) {
+          // if post request
+          if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+              //validate
+              $error_msg = validate_form_2();
+              if (count($error_msg) > 0){
+                  //display errors
+                  display_error($error_msg);
+                  //load form 2
+                  form_2();
+              } else {
+                  //set session to page 3
+                  $_SESSION['page'] = 3;
+                  //load form 3
+                  form_3();
+              }
           } else {
-              $_SESSION['page'] = 2;
-              //load form 2
               form_2();
           }
-      } else if (isset($_SESSION['page']) && ($_SESSION['page'] == 2)){
-          $error_msg = validate_form_2();
-          if (count($error_msg) > 0){
-              //display errors
-              display_error($error_msg);
-              //load form 2
-              form_2();
+
+      } else if (isset($_SESSION['page']) && ($_SESSION['page'] == 3)) {
+          // if post request
+          if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+              //validate
+              $error_msg = validate_form_3();
+              if (count($error_msg) > 0) {
+                  //display errors
+                  display_error($error_msg);
+                  //load form 3
+                  form_3();
+              } else {
+                  //set session to page 4
+                  $_SESSION['page'] = 4;
+                  //load page with all data
+                  thankyou();
+              }
           } else {
-              $_SESSION['page'] = 3;
               //load form 3
               form_3();
           }
-      } else if (isset($_SESSION['page']) && ($_SESSION['page'] == 3)){
-          $error_msg = validate_form_3();
-          if (count($error_msg) > 0){
-              //display errors
-              display_error($error_msg);
-              //load form 3
-              form_3();
-          } else {
-              thankyou();
-          }
+      } else if (isset($_SESSION['page']) && ($_SESSION['page'] == 4)) {
+          thankyou();
       }
-  } else {
-      $_SESSION['page'] = 0;
-      intro();
-  } ?>
+  ?>
 
   </body>
 </html>

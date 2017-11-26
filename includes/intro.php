@@ -7,7 +7,7 @@
             Please, answer some questions based on your recent purchase. <br>
             After clicking BEGIN button, the survey will be started.
         </p>
-        <button class="btn" type="submit">Begin</button>
+        <input class="btn" type="submit" value="Begin">
     </div>
 </form>
 <?php } ?>
