@@ -33,7 +33,8 @@
         <input type="checkbox" id="tablet" name="purchases[]" <?php if ((isset($_SESSION['purchases']) || isset($_POST['purchases'])) && (in_array("Tablet", $purchases))) echo "checked";?> value="Tablet"> <label for="tablet">Tablet</label>
         <input type="checkbox" id="hometheater" name="purchases[]" <?php if ((isset($_SESSION['purchases']) || isset($_POST['purchases'])) && (in_array("Home Theater", $purchases))) echo "checked";?> value="Home Theater"> <label for="hometheater">Home Theater</label>
         <br>
-        <input class="btn" type="submit" value="Next">
+        <input class="btn" type="submit" name="back" value="Back">
+        <input class="btn" type="submit" name="next" value="Next">
     </form>
 <?php } ?>
 

@@ -41,7 +41,8 @@
                 <option <?php if ($student=="No") echo "selected";?> value="No">No</option>
             </select>
             <br>
-            <input class="btn" type="submit" value="Next">
+            <input class="btn" type="submit" name="back" value="Back">
+            <input class="btn" type="submit" name="next" value="Next">
         </div>
     </form>
 <?php } ?>

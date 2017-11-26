@@ -36,8 +36,8 @@
           //load form 1
           form_1();
       } else if (isset($_SESSION['page']) && ($_SESSION['page'] == 1)) {
-          // if post request
-          if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+          // if Next button
+          if (isset($_POST['next'])) {
               //validate
               $error_msg = validate_form_1();
               if (count($error_msg) > 0){
@@ -51,12 +51,19 @@
                   //load form 2
                   form_2();
               }
+          } else if (isset($_POST['back'])) {
+              // if Back button
+              //set session to page 0
+              $_SESSION['page'] = 0;
+              //load into page
+              intro();
           } else {
+              //load form_1 if access page directly
               form_1();
           }
       } else if (isset($_SESSION['page']) && ($_SESSION['page'] == 2)) {
-          // if post request
-          if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+          // if Next button
+          if (isset($_POST['next'])) {
               //validate
               $error_msg = validate_form_2();
               if (count($error_msg) > 0){
@@ -70,13 +77,19 @@
                   //load form 3
                   form_3();
               }
+          } else if (isset($_POST['back'])) {
+              // if Back button
+              //set session to page 1
+              $_SESSION['page'] = 1;
+              //load form 1
+              form_1();
           } else {
+              //load form_2 if access page directly
               form_2();
           }
-
       } else if (isset($_SESSION['page']) && ($_SESSION['page'] == 3)) {
-          // if post request
-          if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+          // if Next button
+          if (isset($_POST['next'])) {
               //validate
               $error_msg = validate_form_3();
               if (count($error_msg) > 0) {
@@ -90,12 +103,27 @@
                   //load page with all data
                   thankyou();
               }
+          } else if (isset($_POST['back'])) {
+              // if Back button
+              //set session to page 3
+              $_SESSION['page'] = 2;
+              //load form 2
+              form_2();
           } else {
-              //load form 3
+              //load form_3 if access page directly
               form_3();
           }
       } else if (isset($_SESSION['page']) && ($_SESSION['page'] == 4)) {
-          thankyou();
+            if (isset($_POST['back'])) {
+                // if Back button
+                //set session to page 3
+                $_SESSION['page'] = 3;
+                //load form 3
+                form_3();
+            } else {
+                //load thankyou if access page directly
+                thankyou();
+            }
       }
   ?>
 
